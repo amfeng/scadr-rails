@@ -2,6 +2,9 @@ SCADR-Rails
 ===========
 An implementation of SCADR, a Twitter clone, that is built on Rails.
 
+Note
+-----
+The PIQL version of the application will require piql.jar to be located at db/piql.jar
 
 Implementation
 --------------
