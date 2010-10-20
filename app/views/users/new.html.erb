@@ -1,0 +1,17 @@
+<h1>Join SCADr</h1>
+
+<% form_for @user do |f| %>
+<ul>
+  <li>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </li>
+  <li>
+    <%= f.label :hometown %>
+    <%= f.text_field :hometown %>
+  </li>
+  <li>
+    <%= f.submit %>
+  </li>
+</ul>
+<% end %>

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   set_primary_key :username
-
+  # acts_as_authentic do |c|
+  #   c.login_field = :username
+  # end
+ 
   # Okay, fuck this.
   # This is way too complicated, and I'd have to reimplement it in AvroRecord...
   #
@@ -10,17 +13,21 @@ class User < ActiveRecord::Base
   # has_many :incoming_subscriptions, :class_name => "Subscription", :foreign_key => :target
   # has_many :subscribers, :through => :incoming_subscriptions
 
+  def to_param
+    username
+  end
+
   def get_thoughts
-  	Thought.find :all, :conditions => { :owner => username }
+    Thought.find :all, :conditions => { :owner => username }
   end
 
   # Subscriptions targeted at this user
   def get_subscriptions
-  	Subscription.find :all, :conditions => { :target => username }
+    Subscription.find :all, :conditions => { :target => username }
   end
 
   # Subscriptions owned by this user
   def get_owned_subscriptions
-  	Subscription.find :all, :conditions => { :owner => username }
+    Subscription.find :all, :conditions => { :owner => username }
   end
 end

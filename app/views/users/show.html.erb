@@ -1,0 +1,8 @@
+<h1>User <%= @user.username %></h1>
+<p>My hometown: <%= @user.hometown or "Not Set" %></p>
+
+<h2>Thoughts</h2>
+<p><%= link_to "Think a Thought...", new_user_thought_path(current_user) %></p>
+<% @thoughts.each do |thought| -%>
+  <%= render :partial => 'thoughts/show', :locals => {:thought => thought} %>
+<% end -%>

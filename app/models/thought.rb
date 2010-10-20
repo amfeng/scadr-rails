@@ -5,6 +5,10 @@ class Thought < ActiveRecord::Base
   #
   # belongs_to :user, :foreign_key => :owner
 
+  def to_param
+    timestamp.to_s
+  end
+
   def get_owner
   	User.find :first, :conditions => { :username => owner }
   end
