@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  extend DataMethods
   set_primary_key :username
   # acts_as_authentic do |c|
   #   c.login_field = :username
@@ -17,17 +18,23 @@ class User < ActiveRecord::Base
     username
   end
 
-  def get_thoughts
-    Thought.find :all, :conditions => { :owner => username }
+  def thoughtstream(count)
+    User.thoughtstream(username, count)
+  end
+  
+  def following
+    User.users_followed_by(username)
   end
 
-  # Subscriptions targeted at this user
-  def get_subscriptions
-    Subscription.find :all, :conditions => { :target => username }
+  def followers
+    User.users_following(username)
   end
 
-  # Subscriptions owned by this user
-  def get_owned_subscriptions
-    Subscription.find :all, :conditions => { :owner => username }
+  def my_thoughts(count)
+    Thought.my_thoughts(username, count)
+  end
+
+  def thoughtstream(count)
+    Thought.thoughtstream(username, count)
   end
 end

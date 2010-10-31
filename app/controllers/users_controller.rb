@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
-  def index
-    @users = User.all
-  end
+  # def index
+  # end
 
   def new
     @user = User.new
@@ -14,6 +13,7 @@ class UsersController < ApplicationController
     @user.username = params[:user][:username]
     if @user.save
       flash[:notice] = "Your account \"#{@user.username}\" has been created!"
+      session[:usename] = @user.username
       redirect_to @user
     else
       render :action => :new
@@ -21,8 +21,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(:first, :conditions => { :username => params[:id] })
-    @thoughts = @user.get_thoughts
+    @user = User.find_user(params[:id])
+    @thoughts = @user.my_thoughts(10)
+    @thoughtstream = @user.thoughtstream(10)
+    @can_subscribe = current_user != @user && !current_user.following.include?(@user)
   end
 
 end

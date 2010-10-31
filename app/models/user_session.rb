@@ -1,4 +1,5 @@
 class UserSession
+  extend DataMethods
   attr_accessor :username
 
   def initialize(params={})
@@ -15,12 +16,16 @@ class UserSession
     session
   end
 
+  def valid?
+    not user.nil?
+  end
+
   def save
-    true
+    return valid?
   end
 
   def user
-    User.find :first, :conditions => { :username => username }
+    User.find_user(username)
   end
 
   def destroy

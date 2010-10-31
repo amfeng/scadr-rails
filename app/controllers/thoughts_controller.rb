@@ -1,7 +1,7 @@
 class ThoughtsController < ApplicationController
   def new
-  	@owner = User.find :first, :conditions => { :username => params[:user_id] }
-  	@thought = Thought.new
+    @owner = User.find_user(params[:user_id])
+    @thought = Thought.new
   end
 
   def create
@@ -20,9 +20,9 @@ class ThoughtsController < ApplicationController
   def edit
   end
 
-  def show
-  	@owner = User.find :first, :conditions => { :username => params[:user_id] }
-  	@thought = Thought.find :first, :conditions => { :owner => params[:user_id], :timestamp => params[:id] }
-  end
+  # def show
+  #   @owner = User.find_user(params[:user_id])
+  #   @thought = Thought.find_thought(params[:user_id], params[:id])
+  # end
 
 end

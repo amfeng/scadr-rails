@@ -1,4 +1,5 @@
 class Thought < ActiveRecord::Base
+  extend DataMethods
   set_primary_keys :owner, :timestamp
 
   # Screw this; see user.rb
@@ -7,13 +8,5 @@ class Thought < ActiveRecord::Base
 
   def to_param
     timestamp.to_s
-  end
-
-  def get_owner
-  	User.find :first, :conditions => { :username => owner }
-  end
-
-  def get_tags
-  	HashTag.find :all, :conditions => { :owner => owner, :timestamp => timestamp }
   end
 end

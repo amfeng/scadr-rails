@@ -1,11 +1,8 @@
 class Subscription < ActiveRecord::Base
+  extend DataMethods
   set_primary_keys :owner, :target
 
-  def get_owner
-  	User.find :first, :conditions => { :username => owner }
-  end
-
-  def get_target
-  	User.find :first, :conditions => { :username => target }
+  def to_param
+    target
   end
 end

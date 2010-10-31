@@ -1,8 +1,21 @@
 <h1>User <%= @user.username %></h1>
 <p>My hometown: <%= @user.hometown or "Not Set" %></p>
+<% if @can_subscribe -%>
+<% form_for [current_user, Subscription.new] do |sub| %>
+  <%= sub.hidden_field :target, :value => @user.username %>
+  <%= sub.submit "Subscribe" %>
+<% end %>
+<% else -%>
+<p>You are subscribed to <%=@user.username%></p>
+<% end -%>
 
 <h2>Thoughts</h2>
 <p><%= link_to "Think a Thought...", new_user_thought_path(current_user) %></p>
 <% @thoughts.each do |thought| -%>
+  <%= render :partial => 'thoughts/show', :locals => {:thought => thought} %>
+<% end -%>
+
+<h2>Thoughtstream</h2>
+<% @thoughtstream.each do |thought| -%>
   <%= render :partial => 'thoughts/show', :locals => {:thought => thought} %>
 <% end -%>
