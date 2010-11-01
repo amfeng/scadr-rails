@@ -7,7 +7,7 @@ RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  # Settings in config/environments/* take precedence over those specified here.
+  # Settings in config/environments/* take precedence over those specified here .
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
 
@@ -19,7 +19,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "composite_primary_keys"
+  # config.gem "composite_primary_keys"
   # config.gem "authlogic"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -40,8 +40,4 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
-
-  # Enables the user of composite primary keys, which are used in the SCADR schema
-  # NOTE: May be ActiveRecord dependent, check when PIQLing app
-  # require 'composite_primary_keys'
 end

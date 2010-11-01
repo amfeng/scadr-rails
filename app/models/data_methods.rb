@@ -1,4 +1,8 @@
 module DataMethods
+  # TODO: Make this do something?
+  def set_primary_keys(*keys)
+  end
+
   def find_user(username)
     User.find_by_username(username)
   end
