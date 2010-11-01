@@ -4,7 +4,7 @@ module DataMethods
   end
 
   def my_thoughts(username, count)
-    Thought.find_all_by_owner(username, :limit => count)
+    Thought.find_all_by_owner(username, :order => 'timestamp DESC', :limit => count)
   end
 
   def users_followed_by(username)
@@ -25,11 +25,11 @@ module DataMethods
     self.users_followed_by(username).each do |user|
       thoughtstream.concat self.my_thoughts(user.username,count)
     end
-    thoughtstream.sort{ |t1,t2| t1.timestamp <=> t2.timestamp }[0,count]
+    thoughtstream.sort{ |t1,t2| t2.timestamp <=> t1.timestamp }[0,count]
   end
 
   def thoughts_by_hash_tag(tag, count)
-    HashTag.find_all_by_tag(tag, :limit => count).collect { |ht|
+    HashTag.find_all_by_tag(tag, :order => 'timestamp DESC', :limit => count).collect { |ht|
       ht.get_thought
       }
   end

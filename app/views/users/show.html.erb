@@ -1,21 +1,23 @@
-<h1>User <%= @user.username %></h1>
-<p>My hometown: <%= @user.hometown or "Not Set" %></p>
-<% if @can_subscribe -%>
-<% form_for [current_user, Subscription.new] do |sub| %>
-  <%= sub.hidden_field :target, :value => @user.username %>
-  <%= sub.submit "Subscribe" %>
-<% end %>
-<% else -%>
-<p>You are subscribed to <%=@user.username%></p>
-<% end -%>
+<h1><%= @user.username %></h1>
+<div id="user-bar">
+  <ul>
+    <li>Hometown: <%= @user.hometown or "Not Set" %></li>
+  </ul>
+  <% if @can_subscribe -%>
+    <% form_for [current_user, Subscription.new] do |sub| %>
+      <%= sub.hidden_field :target, :value => @user.username %>
+      <%= sub.submit "Subscribe" %>
+    <% end %>
+  <% elsif current_user && current_user != @user -%>
+    <p>You are subscribed to <%=@user.username%></p>
+  <% end -%>
+</div>
 
 <h2>Thoughts</h2>
+<% if @user == current_user -%>
 <p><%= link_to "Think a Thought...", new_user_thought_path(current_user) %></p>
-<% @thoughts.each do |thought| -%>
-  <%= render :partial => 'thoughts/show', :locals => {:thought => thought} %>
 <% end -%>
+<%= render :partial => 'thoughts/index', :locals => {:thoughts => @thoughts} %>
 
 <h2>Thoughtstream</h2>
-<% @thoughtstream.each do |thought| -%>
-  <%= render :partial => 'thoughts/show', :locals => {:thought => thought} %>
-<% end -%>
+<%= render :partial => 'thoughts/index', :locals => {:thoughts => @thoughtstream} %>

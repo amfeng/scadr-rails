@@ -13,8 +13,7 @@ class UsersController < ApplicationController
     @user.username = params[:user][:username]
     if @user.save
       flash[:notice] = "Your account \"#{@user.username}\" has been created!"
-      session[:usename] = @user.username
-      redirect_to @user
+      redirect_to root_path
     else
       render :action => :new
     end
@@ -24,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.find_user(params[:id])
     @thoughts = @user.my_thoughts(10)
     @thoughtstream = @user.thoughtstream(10)
-    @can_subscribe = current_user != @user && !current_user.following.include?(@user)
+    @can_subscribe = current_user && current_user != @user && !current_user.following.include?(@user)
   end
 
 end
