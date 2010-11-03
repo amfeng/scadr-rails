@@ -1,5 +1,4 @@
-class User < ActiveRecord::Base
-  extend DataMethods
+class User < AvroRecord
   set_primary_key :username
   # acts_as_authentic do |c|
   #   c.login_field = :username

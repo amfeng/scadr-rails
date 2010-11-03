@@ -1,5 +1,4 @@
-class UserSession
-  extend DataMethods
+class UserSession < AvroRecord
   attr_accessor :username
 
   def initialize(params={})
@@ -21,7 +20,7 @@ class UserSession
   end
 
   def save
-    return valid?
+    valid?
   end
 
   def user

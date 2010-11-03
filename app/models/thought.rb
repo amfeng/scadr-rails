@@ -1,5 +1,4 @@
-class Thought < ActiveRecord::Base
-  extend DataMethods
+class Thought < AvroRecord
   set_primary_keys :owner, :timestamp
 
   # Screw this; see user.rb

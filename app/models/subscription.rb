@@ -1,5 +1,4 @@
-class Subscription < ActiveRecord::Base
-  extend DataMethods
+class Subscription < AvroRecord
   set_primary_keys :owner, :target
 
   def to_param

@@ -1,4 +1,3 @@
-class HashTag < ActiveRecord::Base
-  extend DataMethods
+class HashTag < AvroRecord
   set_primary_keys :owner, :timestamp, :tag
 end
