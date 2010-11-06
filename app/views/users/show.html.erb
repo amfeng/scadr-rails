@@ -1,7 +1,7 @@
 <h1><%= @user.username %></h1>
 <div id="user-bar">
   <ul>
-    <li>Hometown: <%= @user.hometown or "Not Set" %></li>
+    <li>Hometown: <%= @user.home_town or "Not Set" %></li>
   </ul>
   <% if @can_subscribe -%>
     <% form_for [current_user, Subscription.new] do |sub| %>

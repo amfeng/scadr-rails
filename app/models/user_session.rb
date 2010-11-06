@@ -1,4 +1,4 @@
-class UserSession < AvroRecord
+class UserSession
   attr_accessor :username
 
   def initialize(params={})
@@ -24,7 +24,9 @@ class UserSession < AvroRecord
   end
 
   def user
-    User.find_user(username)
+    return nil if username.nil?
+    results = User.find_user(username)
+    results.present? ? results.first : nil
   end
 
   def destroy
