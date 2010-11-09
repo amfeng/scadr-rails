@@ -1,4 +1,5 @@
 class User < AvroRecord
+  include Comparable
   set_primary_key :username
   # acts_as_authentic do |c|
   #   c.login_field = :username
@@ -35,5 +36,9 @@ class User < AvroRecord
 
   def thoughtstream(count)
     Thought.thoughtstream(username, count)
+  end
+  
+  def <=>(other)
+    self.username <=> other.username if other.is_a?(User)
   end
 end
