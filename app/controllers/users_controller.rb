@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_user(params[:id])
+    @user.present? ? @user = @user.first : @user = nil
     @thoughts = @user.my_thoughts(10)
     @thoughtstream = @user.thoughtstream(10)
     @can_subscribe = current_user && current_user != @user && !current_user.following.include?(@user)
