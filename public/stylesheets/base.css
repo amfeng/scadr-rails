@@ -3,12 +3,12 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: Helvetica;
-  background: #eee;
+  background: #ddd;
 }
 
 #wrapper{
   width: 800px;
-  margin: auto;
+  margin: 0 auto;
   background: white;
   min-height: 100%;
   height: auto !important;
@@ -17,14 +17,14 @@ html, body {
 }
 
 #footer{
-  height: 50px;
   background: #ccc;
   width: 800px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 #footer-content{
-  padding: 1em;
+  line-height: 50px;
+  padding: 0 1em;
 }
 
 h1, h2{
@@ -34,13 +34,15 @@ h1, h2{
 /* HEADER */
 #header {
   margin: 0;
-  padding: 10px;
+  padding: 0 10px;
+  border-top: 5px solid #ddd;
+  border-bottom: 5px solid #ddd;
 }
 #header h1 {
-  font-family: 'Lobster';
+  font-family: 'Lobster', serif;
   margin: 0;
+  padding: 0 10px;
   text-transform: lowercase;
-  margin-left: 1em;
 }
 
 #header h1 a{
@@ -55,7 +57,7 @@ h1, h2{
 
 #header ul {
   list-style: none;
-  margin: 0;
+  margin: 10px 0;
   padding: 0;
   float: right;
 }
@@ -84,7 +86,7 @@ h1, h2{
   color: #900;
 }
 
-/*Login Page*/
+/* Login Page */
 #login-box{
   margin: auto; 
   width: 400px;
@@ -98,14 +100,15 @@ h1, h2{
 /* BODY */
 
 #body {
-  padding: 10px;
+  padding: 10px 20px 50px;
 }
 #body h1 {
   margin: 0;
+  clear: both;
 }
 h2 {
   border-top: 1px dotted #000;
-  padding-top: 1em;
+  padding-top: .5em;
 }
 .user {
   font-weight: bold;
@@ -118,4 +121,24 @@ h2 {
 }
 .thought-body p:first-child {
   margin-top: 0;
+}
+#think {
+  clear: both;
+  border-bottom: 1px dotted #000;
+  padding: 0 0 1em;
+}
+form {
+  width: 700px;
+  margin: 0 auto;
+}
+#think textarea {
+  width: 630px;
+  height: 40px;
+  padding: 5px;
+  margin-right: 5px;
+  float: left;
+}
+#think input {
+  width: 50px;
+  height: 50px;
 }
