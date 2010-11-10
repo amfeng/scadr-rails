@@ -4,4 +4,5 @@ class Subscription < AvroRecord
   def to_param
     target
   end
+  
 end

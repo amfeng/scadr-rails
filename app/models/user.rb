@@ -22,12 +22,12 @@ class User < AvroRecord
     User.thoughtstream(username, count)
   end
   
-  def following
-    User.users_followed_by(username)
+  def following(count)
+    Subscription.users_followed_by(username, count)
   end
 
-  def followers
-    User.users_following(username)
+  def followers(count)
+    Subscription.users_following(username, count)
   end
 
   def my_thoughts(count)

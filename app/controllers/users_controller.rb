@@ -24,10 +24,15 @@ class UsersController < ApplicationController
     @user.present? ? @user = @user.first : @user = nil
     @thoughts = @user.my_thoughts(10)
     @thoughtstream = @user.thoughtstream(10)
-    puts "Current User: #{current_user.username}"
-    puts "User Page: #{@user.username}"
-    puts "#{current_user == @user}"
-    @can_subscribe = current_user && current_user != @user && !current_user.following.include?(@user)
+    @can_subscribe = current_user && current_user != @user
+    if @can_subscribe
+      subscriptions = current_user.following(10)
+      subscriptions.each do |sub|
+        if sub.target == @user.username
+          @can_subscribe = false
+          break
+        end
+      end
+    end
   end
-
 end

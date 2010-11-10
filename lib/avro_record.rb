@@ -96,14 +96,16 @@ class AvroRecord
         key_schema = keystore.getSchema.getFields
         (0...key_schema.size).each do |index|
           field = key_schema.get(index).name
-          value = keystore.get(index).to_s
+          value = keystore.get(index)
+          value = value.to_s if value.is_a?(Java::OrgApacheAvroUtil::Utf8)
           instance.send(field.underscore+"=", value)
         end
 
         value_schema = valuestore.getSchema.getFields
         (0...value_schema.size).each do |index|
           field = value_schema.get(index).name
-          value = valuestore.get(index).to_s
+          value = valuestore.get(index)
+          value = value.to_s if value.is_a?(Java::OrgApacheAvroUtil::Utf8)
           instance.send(field.underscore+"=", value)
         end
         
