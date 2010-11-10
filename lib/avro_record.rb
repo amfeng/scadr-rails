@@ -80,27 +80,33 @@ class AvroRecord
   def self.method_missing(method_id, *arguments, &block)
     # Find
     if $CLIENT.respond_to?(method_id)
-      # And after about 4 hours, I finally realize that this is not enumerable or any type of iterable object
-      # And that I need to call "product_elements" before I can finally do shit
       begin
-        raw_results = $CLIENT.send(method_id, *arguments, &block).product_elements.to_list
+        raw_results = $CLIENT.send(method_id, *arguments, &block)
       rescue Exception => e
         raw_results = []
       end
       results = []
       
       # NOTE: raw_results.size - 1, because the last element of the iterator is not an actual result
-      while results.size < raw_results.size - 1 do
-        keystore, valuestore = raw_results.product_element(results.size)
-        keys = keystore.to_s
-        values = valuestore.to_s
+      while results.size < raw_results.size do
+        keystore, valuestore = raw_results.apply(results.size)
+        
         instance = self.fetch
-        JSON.parse(keys).each_pair do |field, value|
+        
+        key_schema = keystore.getSchema.getFields
+        (0...key_schema.size).each do |index|
+          field = key_schema.get(index).name
+          value = keystore.get(index).to_s
           instance.send(field.underscore+"=", value)
         end
-        JSON.parse(values).each_pair do |field, value|
+
+        value_schema = valuestore.getSchema.getFields
+        (0...value_schema.size).each do |index|
+          field = value_schema.get(index).name
+          value = valuestore.get(index).to_s
           instance.send(field.underscore+"=", value)
         end
+        
         results.push instance
       end
       results
