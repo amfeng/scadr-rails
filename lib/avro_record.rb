@@ -87,7 +87,6 @@ class AvroRecord
       end
       results = []
       
-      # NOTE: raw_results.size - 1, because the last element of the iterator is not an actual result
       while results.size < raw_results.size do
         keystore, valuestore = raw_results.apply(results.size)
         
