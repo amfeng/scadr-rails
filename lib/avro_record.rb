@@ -6,7 +6,7 @@ import Java::EduBerkeleyCsScadsPiql::ScadrClient
 import Java::EduBerkeleyCsScadsPiql::SimpleExecutor
 import Java::EduBerkeleyCsScadsStorage::TestScalaEngine
 
-$CLIENT = ScadrClient.new(TestScalaEngine.getTestCluster, SimpleExecutor.new, 10, 10, 10 ,10)
+$CLIENT = ScadrClient.new(TestScalaEngine.getTestCluster, SimpleExecutor.new, 10)
 
 class String
   def carmelize
@@ -81,7 +81,7 @@ class AvroRecord
     # Find
     if $CLIENT.respond_to?(method_id)
       begin
-        raw_results = $CLIENT.send(method_id, *arguments, &block).to_list
+        raw_results = $CLIENT.send(method_id, *arguments, &block)
       rescue Exception => e
         raw_results = []
       end
