@@ -6,7 +6,7 @@ import Java::EduBerkeleyCsScadsPiql::ScadrClient
 import Java::EduBerkeleyCsScadsPiql::SimpleExecutor
 import Java::EduBerkeleyCsScadsStorage::TestScalaEngine
 
-$CLIENT = ScadrClient.new(TestScalaEngine.getTestCluster, SimpleExecutor.new, 10, 10, 10 ,10)
+$CLIENT = ScadrClient.new(TestScalaEngine.getTestCluster, SimpleExecutor.new, 10)
 
 class String
   def carmelize

@@ -1,17 +1,15 @@
 <h1>Join SCADr</h1>
 
 <% form_for @user do |f| %>
-<ul>
-  <li>
+  <p>
     <%= f.label :username %>
     <%= f.text_field :username %>
-  </li>
-  <li>
+  </p>
+  <p>
     <%= f.label :home_town %>
     <%= f.text_field :home_town %>
-  </li>
-  <li>
+  </p>
+  <p>
     <%= f.submit %>
-  </li>
-</ul>
+  </p>
 <% end %>
