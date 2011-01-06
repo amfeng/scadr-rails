@@ -9,7 +9,8 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       session[:username] = @user_session.username
       flash[:notice] = "Logged in as #{@user_session.username}."
-      redirect_to @user_session.user
+      
+      redirect_to :controller => :users, :action => :show, :id => @user_session.username
     else
       flash[:error] = "Failed to log in."
       render :action => :new

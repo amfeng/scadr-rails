@@ -18,10 +18,6 @@ class User < AvroRecord
     username
   end
 
-  def thoughtstream(count)
-    User.thoughtstream(username, count)
-  end
-  
   def following(count)
     Subscription.users_followed_by(username, count)
   end

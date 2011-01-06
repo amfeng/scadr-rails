@@ -122,14 +122,17 @@ class AvroRecord
           row = rows.apply(row_index)
           schema = row.schema
           fields = schema.fields
-          instance = schema.name.constantize.new
-          (0...fields.size).each do |field_index|
-            field = fields.get(field_index).name
-            value = row.send(field)
-            value = value.to_s if value.is_a?(Java::OrgApacheAvroUtil::Utf8)
-            instance.send(field.underscore+"=", value)
+          
+          if schema.name != "UserKeyType" # TODO: Remove this once it's fixed
+            instance = schema.name.constantize.new
+            (0...fields.size).each do |field_index|
+              field = fields.get(field_index).name
+              value = row.send(field)
+              value = value.to_s if value.is_a?(Java::OrgApacheAvroUtil::Utf8)
+              instance.send(field.underscore+"=", value)
+            end
+            tuple.push(instance)
           end
-          tuple.push(instance)
         end
         
         results.push tuple

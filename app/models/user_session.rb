@@ -26,7 +26,7 @@ class UserSession
   def user
     return nil if username.nil?
     results = User.find_user(username)
-    results.present? ? results.first : nil
+    results.present? ? results.first.first : nil
   end
 
   def destroy

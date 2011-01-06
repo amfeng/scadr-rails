@@ -1,7 +1,7 @@
 class ThoughtsController < ApplicationController
   def new
     query = User.find_user(params[:user_id])
-    @owner = query.present? ? query.first : nil
+    @owner = query.present? ? query.first.first : nil
     @thought = Thought.new
   end
 
