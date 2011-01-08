@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     raw_thoughtstream = @user.thoughtstream(10)
     # Remember that this comes in the form of (subscription, thought)
     # TODO: Currently no worky
-    @thoughtstream = raw_thoughtstream.collect{ |ts| ts[2] }
+    @thoughtstream = raw_thoughtstream.collect{ |ts| ts[1] }
     
     @can_subscribe = current_user && current_user != @user
     
