@@ -4,6 +4,8 @@
 	<% form_for @user_session, :url => user_session_path do |f| %>
 	  <%= f.label :username %><br />
 	  <%= f.text_field :username %><br />
+	  <%= f.label :password %><br />
+	  <%= password_field_tag :password %><br />
 	  <br />
 	  <%= f.submit "Login" %>
 	<% end %>
