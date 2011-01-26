@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users do |user|
-    user.resources :thoughts
+    user.resources :thoughts, :collection => { :thoughts => :get, :thoughtstream => :get }
     user.resources :subscriptions
   end
 
